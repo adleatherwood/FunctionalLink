@@ -1,0 +1,9 @@
+variables: 
+- name  : Version
+  find  : '[\d\.]+'
+  group : 0  
+tasks: 
+- variable : Version
+  filemask : FunctionalLink\.csproj$
+  find     : (<[vV]ersion>)([\d\.]+)(<\/[vV]ersion>)
+  replace  : ${1}%s${3}
