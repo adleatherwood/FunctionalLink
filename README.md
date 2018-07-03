@@ -104,3 +104,5 @@ var array2 = arr (1, 2, 3, 4, 5)
 var dict1 = dict ((1,"one"), (2,"two"), (3,"three"))
 var dict2 = dict (Tuple.Create(1,"one"), Tuple.Create(2,"two"), Tuple.Create(3,"three"))
 ```
+
+[Icon Source](http://www.iconarchive.com/show/macaron-icons-by-goescat.html)
