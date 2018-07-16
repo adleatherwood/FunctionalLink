@@ -18,7 +18,7 @@ function downloadEzrep() {
 
 function runTests() {
     cd ./src/FunctionalLink.Tests
-    dotnet test
+    dotnet test -v n /p:CollectCoverage=true
     cd ../..
 }
 
