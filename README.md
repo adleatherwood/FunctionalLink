@@ -3,6 +3,7 @@
 This library is intented to be a gateway for functional concepts to be applied in C#.
 
 [![pipeline status](https://gitlab.com/adleatherwood/FunctionalLink/badges/develop/pipeline.svg)](https://gitlab.com/adleatherwood/FunctionalLink/commits/develop)
+[![coverage report](https://gitlab.com/adleatherwood/FunctionalLink/badges/develop/coverage.svg)](https://gitlab.com/adleatherwood/FunctionalLink/commits/develop)
 
 ```csharp
 public async Task ExampleAsync()
