@@ -1,16 +1,15 @@
 ﻿/**************************************************************************************
  * Original Author : Anthony Leatherwood (adleatherwood@gmail.com)                              
- * Source Location : https://github.com/adleatherwood/UberUnits    
+ * Source Location : https://gitlab.com/adleatherwood/FunctionalLink
  *  
- * This source is subject to the Microsoft Public License.
- * Link: http://www.microsoft.com/en-us/openness/licenses.aspx
+ * This source is subject to the GNU GPL3 License.
+ * Link: https://gitlab.com/adleatherwood/FunctionalLink/blob/develop/LICENSE
  *  
  * THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, 
  * EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
  * WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR PURPOSE.
  *
- * VERSION 1.0
- * Noice!
+ * Version: <--version--> 
  **************************************************************************************/
 
 using System;
