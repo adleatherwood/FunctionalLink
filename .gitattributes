@@ -1,2 +1,2 @@
-*.sh    eol-lf
-*.md    eol-lf
+*.sh    eol=lf
+*.md    eol=lf

@@ -100,30 +100,6 @@ namespace FunctionalLink.Tests
             Assert.AreEqual(1, actual);
         }
 
-        //[TestMethod]
-        //public void OptionValueOrDefaultEnumeratesProperly()
-        //{
-        //    var list = new List<Option<string>>() { "test" };
-
-        //    var actual = list
-        //        .Select(o => o.s("x"))
-        //        .Single();
-
-        //    Assert.AreEqual("test", actual);
-        //}
-
-        //[TestMethod]
-        //public void OptionValueOrDefaultEnumeratesProperlyWhenNone()
-        //{
-        //    var list = new List<Option<string>>() { Option.None };
-
-        //    var actual = list
-        //        .Select(o => o.Su("x"))
-        //        .Single();
-
-        //    Assert.AreEqual("x", actual);
-        //}
-
         [TestMethod]
         public void OptionValueOrEffectEnumeratesProperly()
         {

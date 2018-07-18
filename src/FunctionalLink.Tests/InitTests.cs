@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static FunctionalLink.Init;
 
 namespace FunctionalLink.Tests
@@ -13,6 +14,55 @@ namespace FunctionalLink.Tests
 
             Assert.AreEqual("one", d[1]);
             Assert.AreEqual("two", d[2]);
+        }
+
+        [TestMethod]
+        public void DictInitializesAllValuesWithTuples()
+        {
+            var d = dict(Tuple.Create(1, "one"), Tuple.Create(2, "two"));
+
+            Assert.AreEqual("one", d[1]);
+            Assert.AreEqual("two", d[2]);
+        }
+
+        [TestMethod]
+        public void LstInitializesAllValues()
+        {
+            var l = lst(1,2,3);
+
+            Assert.AreEqual(1, l[0]);
+            Assert.AreEqual(2, l[1]);
+            Assert.AreEqual(3, l[2]);
+        }
+
+        [TestMethod]
+        public void ListInitializesAllValues()
+        {
+            var l = list(1,2,3);
+
+            Assert.AreEqual(1, l[0]);
+            Assert.AreEqual(2, l[1]);
+            Assert.AreEqual(3, l[2]);
+        }
+
+        [TestMethod]
+        public void ArrInitializesAllValues()
+        {
+            var l = arr(1,2,3);
+
+            Assert.AreEqual(1, l[0]);
+            Assert.AreEqual(2, l[1]);
+            Assert.AreEqual(3, l[2]);
+        }
+
+        [TestMethod]
+        public void ArrayInitializesAllValues()
+        {
+            var l = array(1,2,3);
+
+            Assert.AreEqual(1, l[0]);
+            Assert.AreEqual(2, l[1]);
+            Assert.AreEqual(3, l[2]);
         }
     }
 }
