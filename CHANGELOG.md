@@ -2,6 +2,13 @@
 
 <!--- next entry here -->
 
+## 0.1.1
+2018-07-18
+
+### Fixes
+
+- **license:** corrected license and url discrepancies (f1f11993210a5d4767a68b37c8391e3b6cdcfec9)
+
 ## 0.1.0
 2018-07-02
 
