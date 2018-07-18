@@ -1,5 +1,5 @@
 {
-  "C:\\Users\\aleatherwood\\Documents\\GitLab\\FunctionalLink\\src\\FunctionalLink.Tests\\bin\\Debug\\netcoreapp2.0\\FunctionalLink.dll": {
+  "C:\\Users\\aleatherwood\\Documents\\GitLab\\FunctionalLink\\src\\FunctionalLink.Tests\\bin\\Debug\\netcoreapp2.1\\FunctionalLink.dll": {
     "C:\\Users\\aleatherwood\\Documents\\GitLab\\FunctionalLink\\src\\FunctionalLink\\CoreLink.cs": {
       "FunctionalLink.Self": {
         "T FunctionalLink.Self::Id(T)": {
@@ -38,13 +38,13 @@
         },
         "System.Void FunctionalLink.Union`2::.ctor(TA)": {
           "Lines": {
-            "58": 164
+            "58": 168
           },
           "Branches": []
         },
         "System.Void FunctionalLink.Union`2::.ctor(TB)": {
           "Lines": {
-            "59": 72
+            "59": 76
           },
           "Branches": []
         }
@@ -208,9 +208,9 @@
         },
         "TResult FunctionalLink.Union::Match(FunctionalLink.Union`2<T,B>,System.Func`2<T,TResult>,System.Func`2<B,TResult>)": {
           "Lines": {
-            "174": 97,
-            "175": 97,
-            "176": 97
+            "174": 101,
+            "175": 101,
+            "176": 101
           },
           "Branches": [
             {
@@ -219,7 +219,7 @@
               "EndOffset": 8,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 31
+              "Hits": 33
             },
             {
               "Line": 174,
@@ -227,7 +227,7 @@
               "EndOffset": 22,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 66
+              "Hits": 68
             }
           ]
         },
@@ -2237,13 +2237,13 @@
         },
         "System.Void FunctionalLink.Result`1::.ctor(T)": {
           "Lines": {
-            "426": 78
+            "426": 84
           },
           "Branches": []
         },
         "System.Void FunctionalLink.Result`1::.ctor(System.String)": {
           "Lines": {
-            "427": 9
+            "427": 15
           },
           "Branches": []
         }
@@ -2275,13 +2275,13 @@
         },
         "System.Void FunctionalLink.Result`2::.ctor(T)": {
           "Lines": {
-            "442": 213
+            "442": 219
           },
           "Branches": []
         },
         "System.Void FunctionalLink.Result`2::.ctor(TFailure)": {
           "Lines": {
-            "444": 75
+            "444": 81
           },
           "Branches": []
         }
@@ -2289,13 +2289,13 @@
       "FunctionalLink.Result": {
         "FunctionalLink.Result`1<T> FunctionalLink.Result::Success(T)": {
           "Lines": {
-            "462": 26
+            "462": 28
           },
           "Branches": []
         },
         "FunctionalLink.Result`1<T> FunctionalLink.Result::Failure(System.String)": {
           "Lines": {
-            "466": 1
+            "466": 3
           },
           "Branches": []
         },
@@ -2313,9 +2313,9 @@
         },
         "System.Boolean FunctionalLink.Result::IsSuccess(FunctionalLink.Result`2<T,TFailure>)": {
           "Lines": {
-            "478": 0,
-            "479": 0,
-            "480": 0
+            "478": 2,
+            "479": 3,
+            "480": 3
           },
           "Branches": [
             {
@@ -2324,7 +2324,7 @@
               "EndOffset": 9,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 478,
@@ -2332,7 +2332,7 @@
               "EndOffset": 32,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 0
+              "Hits": 2
             },
             {
               "Line": 478,
@@ -2340,7 +2340,7 @@
               "EndOffset": 40,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 478,
@@ -2348,15 +2348,15 @@
               "EndOffset": 63,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 0
+              "Hits": 2
             }
           ]
         },
         "System.Boolean FunctionalLink.Result::IsFailure(FunctionalLink.Result`2<T,TFailure>)": {
           "Lines": {
-            "484": 2,
-            "485": 4,
-            "486": 2
+            "484": 4,
+            "485": 7,
+            "486": 5
           },
           "Branches": [
             {
@@ -2373,7 +2373,7 @@
               "EndOffset": 32,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2
+              "Hits": 4
             },
             {
               "Line": 484,
@@ -2389,7 +2389,7 @@
               "EndOffset": 63,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 2
+              "Hits": 4
             }
           ]
         },
@@ -3047,13 +3047,13 @@
       "FunctionalLink.Tuples": {
         "System.Collections.Generic.IEnumerable`1<TResult> FunctionalLink.Tuples::Select(System.Collections.Generic.IEnumerable`1<System.Tuple`2<TA,TB>>,System.Func`3<TA,TB,TResult>)": {
           "Lines": {
-            "686": 8
+            "686": 12
           },
           "Branches": []
         },
         "System.Collections.Generic.IEnumerable`1<TResult> FunctionalLink.Tuples::Select(System.Collections.Generic.IEnumerable`1<System.Tuple`3<TA,TB,TC>>,System.Func`4<TA,TB,TC,TResult>)": {
           "Lines": {
-            "690": 0
+            "690": 4
           },
           "Branches": []
         }
@@ -3061,31 +3061,31 @@
       "FunctionalLink.Init": {
         "System.Collections.Generic.List`1<T> FunctionalLink.Init::list(T[])": {
           "Lines": {
-            "699": 4
+            "699": 7
           },
           "Branches": []
         },
         "System.Collections.Generic.List`1<T> FunctionalLink.Init::lst(T[])": {
           "Lines": {
-            "702": 9
+            "702": 10
           },
           "Branches": []
         },
         "T[] FunctionalLink.Init::array(T[])": {
           "Lines": {
-            "705": 0
+            "705": 1
           },
           "Branches": []
         },
         "T[] FunctionalLink.Init::arr(T[])": {
           "Lines": {
-            "708": 0
+            "708": 1
           },
           "Branches": []
         },
         "System.Collections.Generic.Dictionary`2<K,V> FunctionalLink.Init::dict(System.Tuple`2<K,V>[])": {
           "Lines": {
-            "711": 0
+            "711": 5
           },
           "Branches": [
             {
@@ -3094,7 +3094,7 @@
               "EndOffset": 9,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 711,
@@ -3102,7 +3102,7 @@
               "EndOffset": 32,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 711,
@@ -3110,7 +3110,7 @@
               "EndOffset": 40,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 0
+              "Hits": 1
             },
             {
               "Line": 711,
@@ -3118,7 +3118,7 @@
               "EndOffset": 63,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 0
+              "Hits": 1
             }
           ]
         },

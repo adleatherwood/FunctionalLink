@@ -25,6 +25,38 @@ namespace FunctionalLink.Tests
         }
 
         [TestMethod]
+        public void IsSuccessEvaluatesTrueProperly()
+        {
+            var actual = Result.Success(1);
+
+            Assert.IsTrue(actual.IsSuccess());
+        }
+
+        [TestMethod]
+        public void IsSuccessEvaluatesFalseProperly()
+        {
+            var actual = Result.Failure<int>("");
+
+            Assert.IsFalse(actual.IsSuccess());
+        }
+
+        [TestMethod]
+        public void IsFailureEvaluatesFalseProperly()
+        {
+            var actual = Result.Success(1);
+
+            Assert.IsFalse(actual.IsFailure());
+        }
+
+        [TestMethod]
+        public void IsFailureEvaluatesTrueProperly()
+        {
+            var actual = Result.Failure<int>("");
+
+            Assert.IsTrue(actual.IsFailure());
+        }
+
+        [TestMethod]
         public void MapEvaluatesProperly()
         {
             var actual = Result.Success(1)

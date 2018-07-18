@@ -50,7 +50,10 @@ function publishRelease() {
 
 function tagRelease() {    
     ./release changelog
-    ./release commit-and-tag CHANGELOG.md ./src/FunctionalLink/FunctionalLink.csproj
+    ./release commit-and-tag \
+        CHANGELOG.md \
+        ./src/FunctionalLink/FunctionalLink.csproj \
+        ./src/FunctionalLink/CoreLink.cs
 }
 
 for arg in "$@"

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -95,6 +96,36 @@ namespace FunctionalLink.Tests
             Assert.AreEqual(7, actual[0]);
             Assert.AreEqual(8, actual[1]);
             Assert.AreEqual(9, actual[2]);
+        }
+
+        [TestMethod]
+        public void TupleSelectABEvaluatesProperly()
+        {            
+            var actual = list(
+                    Tuple.Create(1,"one"), 
+                    Tuple.Create(2,"two"), 
+                    Tuple.Create(3,"three"))
+                .Select((a, b) => a + b)
+                .ToArray();
+
+            Assert.AreEqual("1one", actual[0]);
+            Assert.AreEqual("2two", actual[1]);
+            Assert.AreEqual("3three", actual[2]);
+        }
+
+        [TestMethod]
+        public void TupleSelectABCEvaluatesProperly()
+        {            
+            var actual = list(
+                    Tuple.Create(1,"one", true), 
+                    Tuple.Create(2,"two", false), 
+                    Tuple.Create(3,"three", true))
+                .Select((a, b, c) => a + b + c)
+                .ToArray();
+
+            Assert.AreEqual("1oneTrue", actual[0]);
+            Assert.AreEqual("2twoFalse", actual[1]);
+            Assert.AreEqual("3threeTrue", actual[2]);
         }
     }
 }
