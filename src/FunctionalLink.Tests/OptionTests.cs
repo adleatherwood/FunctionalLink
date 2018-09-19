@@ -9,6 +9,58 @@ namespace FunctionalLink.Tests
     public class OptionTests
     {
         [TestMethod]
+        public void FromNullableEvaluatesNnullStructProperly()
+        {            
+            int? v = null;
+            Option<int?> o = Option.From(v);
+
+            var actual = o.Match(
+                value => false,
+                none => true);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void FromNullableEvaluatesNewStructProperly()
+        {            
+            int? v = 1;
+            Option<int?> o = Option.From(v);
+
+            var actual = o.Match(
+                value => true,
+                none => false);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void FromNullableEvaluatesNewRefProperly()
+        {   
+            object v = new object();         
+            Option<object> o = Option.From(v);
+
+            var actual = o.Match(
+                value => true,
+                none => false);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void FromNullableEvaluatesNullRefProperly()
+        {            
+            object v = null;
+            Option<object> o = Option.From(v);
+
+            var actual = o.Match(
+                value => false,
+                none => true);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
         public void SomeCaseInitializesAndEvaluatesProperly()
         {
             Option<string> o = "test";
