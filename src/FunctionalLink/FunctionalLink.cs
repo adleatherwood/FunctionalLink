@@ -290,7 +290,11 @@ namespace FunctionalLink
     }
 
     public static class Option
-    {
+    {    
+        [DebuggerStepThrough]
+        public static Option<T> From<T>(this T t) =>
+            t != null ? Some(t) : None;
+
         [DebuggerStepThrough]
         public static Option<T> Some<T>(this T t) =>
             new Option<T>(t);
