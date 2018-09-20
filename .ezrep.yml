@@ -8,6 +8,10 @@ tasks:
   find     : (<[vV]ersion>)([\d\.]+)(<\/[vV]ersion>)
   replace  : ${1}%s${3}
 - variable : Version
-  filemask : CoreLink\.cs$
+  filemask : FunctionalLink\.cs$
+  find     : (Version:\s+)(<--version-->)(\s?)
+  replace  : ${1}%s${3}
+- variable : Version
+  filemask : EnumerableLink\.cs$
   find     : (Version:\s+)(<--version-->)(\s?)
   replace  : ${1}%s${3}
