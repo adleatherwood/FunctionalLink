@@ -2,6 +2,14 @@
 
 <!--- next entry here -->
 
+## 0.1.3
+2018-09-20
+
+### Fixes
+
+- **build:** the never ending auto-version fix (9ec0cc62a8bf4df965a0930350da61e145029ca3)
+- **build:** the never ending auto-version fix (d2e3c82a53ad0cf8e502473d5e1511f3bb74c52d)
+
 ## 0.1.2
 2018-09-20
 
