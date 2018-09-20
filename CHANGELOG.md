@@ -2,6 +2,14 @@
 
 <!--- next entry here -->
 
+## 0.1.2
+2018-09-20
+
+### Fixes
+
+- **build:** versioning changes (1e0672a60a2d5ebb216bd125948a186a1f54f497)
+- **build:** ezrep fix (ae90f6e593488156cc51ba7f04da5f0ce7e377a2)
+
 ## 0.1.1
 2018-07-18
 
