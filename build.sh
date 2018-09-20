@@ -3,11 +3,10 @@ set -e
 
 function downloadSemrel() {
     #curl -L -o release https://gitlab.com/juhani/go-semrel-gitlab/uploads/222a87259f6162c1a59c8586226f61cf/release
-    curl -L -o release.tar.gz https://gitlab.com/juhani/go-semrel-gitlab/-/archive/v0.18.0/go-semrel-gitlab-v0.18.0.tar.gz
-    tar xf release.tar.gz
+    curl -L -o release https://gitlab.com/api/v4/projects/5767443/jobs/96471821/artifacts/release
     chmod +x release    
     ./release -v
-    export SEMVER=$(./release next-version)
+    export SEMVER=$(./release next-version -c)
     echo $SEMVER 
 }
 
