@@ -54,7 +54,8 @@ function tagRelease() {
     ./release commit-and-tag \
         CHANGELOG.md \
         ./src/FunctionalLink/FunctionalLink.csproj \
-        ./src/FunctionalLink/CoreLink.cs
+        ./src/FunctionalLink/FunctionalLink.cs \
+        ./src/FunctionalLink/EnumerableLink.cs 
 }
 
 for arg in "$@"
