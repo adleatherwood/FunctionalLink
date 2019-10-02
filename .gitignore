@@ -1,5 +1,6 @@
 *.exe
 **/.vscode
+**/.ionide
 **/bin
 **/obj
 coverage.json

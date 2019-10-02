@@ -1,43 +1,46 @@
-image: microsoft/dotnet:latest
+image: mcr.microsoft.com/dotnet/core/sdk:3.0
 
 stages:
   - test
-  - build
   - release
 
-test:branch:
+branch::test:
   stage: test
   except:
     - /master/
-    - /develop/
-  script:
-    - ./build.sh
-      build-debug
-      run-tests
+  script: |
+    dotnet test -v normal /p:CollectCoverage=true
 
-build:develop:
- stage: build
- only: 
-   - /develop/
- script:
-   - ./build.sh 
-     build-debug 
-     run-tests
- artifacts:
-   paths:
-     - ./src/FunctionalLink/bin/Debug/netstandard2.0/*.*
-
-release:master:
+master::release:
   stage: release
-  only: 
+  only:
     - /master/
-  script:
-    - ./build.sh 
-      download-semrel
-      download-ezrep
-      build-debug 
-      run-tests 
-      build-release 
-      package-release
-      publish-release
-      tag-release
+  script: |
+    echo ----------------------------------------------- TESTING
+
+    dotnet test -v normal -c Release /p:CollectCoverage=true
+
+    echo ----------------------------------------------- VERSIONING
+
+    SEMVER=`./.3rd/release next-version --bump-patch`
+    echo VERSION := $SEMVER
+    sed -i -- "s/1\.0\.0\.0/${SEMVER}/g" ./FunctionalLink/FunctionalLink.csproj
+
+    echo ---------------------------------------------- BUILDING
+
+    cd FunctionalLink
+    dotnet pack -c Release
+    cd ..
+
+    echo ---------------------------------------------- PUBLISHING
+
+    cd ./FunctionalLink/bin/Release
+    NUGET_PKG=$(ls *.nupkg)
+    echo PACKAGE := $NUGET_PKG
+    dotnet nuget push $NUGET_PKG -k $NUGET_KEY -s https://api.nuget.org/v3/index.json
+    cd ../../..
+
+    echo ---------------------------------------------- TAGGING
+
+    ./.3rd/release changelog
+    ./.3rd/release commit-and-tag CHANGELOG.md FunctionalLink/FunctionalLink.csproj
