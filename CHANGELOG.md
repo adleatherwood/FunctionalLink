@@ -2,6 +2,21 @@
 
 <!--- next entry here -->
 
+## 2.0.0
+2019-10-02
+
+### Breaking changes
+
+#### **all:** Library redesign with: (4b2919d2798f844f55b06d52b450fa9a9a8d8f83)
+
+All types refactored for improved experience
+* Improved test coverage
+* Better function naming
+* IEnumerable implementations for both Option & Result
+* Static global functions (e.g. Some, None, etc...)
+* Added a Unit Type
+* Improved async extension methods for all types.
+
 ## 0.1.3
 2018-09-20
 
