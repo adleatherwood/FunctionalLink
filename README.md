@@ -6,84 +6,67 @@ This library is intented to be a gateway for functional concepts to be applied i
 [![coverage report](https://gitlab.com/adleatherwood/FunctionalLink/badges/develop/coverage.svg)](https://gitlab.com/adleatherwood/FunctionalLink/commits/develop)
 
 ```csharp
-public async Task ExampleAsync()
+[TestMethod]
+public void OptionExampleUsageOfBind()
 {
-    var actual = await TryParse("1")
-        .Map(i => Add(i, 1))
-        .Void(SideEffect)
-        .Next(TryGuid)
-        .Next(TryInt)
-        .SuccessOrEffect(SideEffect2);
+    Option<string> NotEmpty(string email) =>
+        !String.IsNullOrWhiteSpace(email) ? Some(email) : None;
 
-        Assert.AreEqual(2, actual);
+    Option<string> IsEmail(string email) =>
+        email.Contains("@") ? Some(email) : None;
+
+    var actual = Some("me@gmail")
+        .Bind(NotEmpty)
+        .Bind(IsEmail)
+        .Match(some => true, none => false);
+
+    Assert.IsTrue(actual);
 }
 ```
 
-
-## SELF
-
-Just a few basic extension methods available in this space.
+Seamless async function composition.
 
 ```csharp
-T Self.Id(this T t)
-void Self.Ignore(this T t)
+[TestMethod]
+public async Task OptionExampleUsageOfAsyncVoid()
+{
+    Option<int> DivideInto(int denominator, int numerator) =>
+        denominator > 0
+            ? Some(numerator / denominator)
+            : None;
+
+    Task LogResult(int value) => Task.FromResult(0);
+
+    int denominator = 3;
+
+    var actual = await Some(denominator)
+        .Bind(DivideInto, 12)
+        .Void(LogResult)   // <-- this call is seamlessly async
+        .Match(some => some, none => -1);
+
+    Assert.AreEqual(4, actual);
+}
 ```
 
-## UNIONS
-
-Unions are implemented as tagged unions and are serializable.  They are generic with up to 5 different types with compatible implicit conversions and tag matching functions.
+Supports IEnumerable query syntax.
 
 ```csharp
-var result = new Union<int, string>(1).Match(
-    number => number.ToString(),
-    test => text + "more text");
+[TestMethod]
+public void OptionExampleUsageOfEnumerableQuery()
+{
+    Option<double> LookupCost(string itemId) => Some(10.00);
+    Option<double> LookupTax(string areaId) => Some(0.06);
+
+    var actual =  // <-- options translate to 0 or 1 records
+        from cost in LookupCost("123")
+        from tax  in LookupTax("CA")
+        select cost + (cost * tax);
+
+    Assert.AreEqual(10.60, actual.SingleOrDefault());
+}
 ```
 
-
-## OPTION
-
-Options are implemented as a Union of T or None.  Options are serializable and inherently support tag matching.
-
-```csharp
-var o = Option.Some("test");
-
-var actual = o.Match(
-    value => true,
-    none => false);
-
-Assert.IsTrue(actual);
-```
-
-Option support basic monadic functions: Map, Void, Next (bind), ValueOrEffect.
-There are async compatible version of these methods that help reduce the number of async keywords in code.
-
-## RESULT
-
-Result is implemented as a Union of T & TFailure.  Result\<T\> is a convenience type implementing Result\<T, string\> as the underlying type.  Results support implicit conversions and inherently support tag matching.
-
-```csharp
-var o = Result.Success("test");
-
-var actual = o.Match(
-    value => true,
-    none => false);
-
-Assert.IsTrue(actual);
-```
-
-Result support basic monadic functions: Map, Void, Next (bind), SuccessOrEffect.
-There are async compatible version of these methods that help reduce the number of async keywords in code.
-
-## ENUMERABLES
-
-There are a handful of enumerable extension methods that support passing in dependencies to mapping functions without having to resort to lambda expressions.
-
-```csharp
-IEnumerable<TResult> Select(this IEnumerable<T> e, Func<T,A,B,C,TResult> f, a, b, c)
-IEnumerable<TResult> Select(this IEnumerable<Tuple<A, B>>, Func<A,B,TResult> f)
-IEnumerable<T> Iterate(this IEnumerable<T> e)
-void EvaluateAndIgnore(IEnumerable<T> e)
-```
+Also includes a Result monad with the same features.  Examples to come...
 
 ## INITIALIZERS
 
@@ -97,10 +80,8 @@ Gives you the ability to initialize collections like so:
 
 ```csharp
 var list1 = list (1, 2, 3, 4, 5)
-var list2 = lst (1, 2, 3, 4, 5)
 
 var array1 = array (1, 2, 3, 4, 5)
-var array2 = arr (1, 2, 3, 4, 5)
 
 var dict1 = dict ((1,"one"), (2,"two"), (3,"three"))
 var dict2 = dict (Tuple.Create(1,"one"), Tuple.Create(2,"two"), Tuple.Create(3,"three"))
