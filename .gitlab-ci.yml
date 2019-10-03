@@ -9,7 +9,7 @@ branch::test:
   except:
     - /master/
   script: |
-    dotnet test -v normal /p:CollectCoverage=true
+    dotnet test -v minimal /p:CollectCoverage=true
 
 master::release:
   stage: release
@@ -18,29 +18,49 @@ master::release:
   script: |
     echo ----------------------------------------------- TESTING
 
-    dotnet test -v normal -c Release /p:CollectCoverage=true
+    dotnet test -v minimal -c Release /p:CollectCoverage=true
 
     echo ----------------------------------------------- VERSIONING
 
-    SEMVER=`./.3rd/release next-version --bump-patch`
+    SEMVER=`./.3rd/release next-version` || true
     echo VERSION := $SEMVER
-    sed -i -- "s/1\.0\.0\.0/${SEMVER}/g" ./FunctionalLink/FunctionalLink.csproj
+    if [ "$SEMVER" ]
+    then
+      sed -i -- "s/1\.0\.0\.0/${SEMVER}/g" ./FunctionalLink/FunctionalLink.csproj
+    else
+      echo "NO VERSION CHANGE -> SKIPPING VERSIONING"
+    fi
 
     echo ---------------------------------------------- BUILDING
 
-    cd FunctionalLink
-    dotnet pack -c Release
-    cd ..
+    if [ "$SEMVER" ]
+    then
+      cd FunctionalLink
+      dotnet pack -c Release
+      cd ..
+    else
+      echo "NO VERSION CHANGE -> SKIPPING BUILD"
+    fi
 
     echo ---------------------------------------------- PUBLISHING
 
-    cd ./FunctionalLink/bin/Release
-    NUGET_PKG=$(ls *.nupkg)
-    echo PACKAGE := $NUGET_PKG
-    dotnet nuget push $NUGET_PKG -k $NUGET_KEY -s https://api.nuget.org/v3/index.json
-    cd ../../..
+    if [ "$SEMVER" ]
+    then
+      cd ./FunctionalLink/bin/Release
+      NUGET_PKG=$(ls *.nupkg)
+      echo PACKAGE := $NUGET_PKG
+      dotnet nuget push $NUGET_PKG -k $NUGET_KEY -s https://api.nuget.org/v3/index.json
+      cd ../../..
+    else
+      echo "NO VERSION CHANGE -> SKIPPING PUBLISH"
+    fi
 
     echo ---------------------------------------------- TAGGING
 
-    ./.3rd/release changelog
-    ./.3rd/release commit-and-tag CHANGELOG.md FunctionalLink/FunctionalLink.csproj
+    if [ "$SEMVER" ]
+    then
+      ./.3rd/release changelog
+      ./.3rd/release commit-and-tag CHANGELOG.md
+    else
+      echo "NO VERSION CHANGE -> SKIPPING TAGGING"
+    fi
