@@ -697,5 +697,38 @@ namespace FunctionalLink.Tests
 
             Assert.AreEqual(0, actual);
         }
+
+        [TestMethod]
+        public void ImplicitBooolPositive()
+        {
+            var actual = Option.Some(1);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void ImplicitBooolNegative()
+        {
+            var actual = Option.None<int>();
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValuePropertyPositive()
+        {
+            var actual = Option.Some(1);
+
+            Assert.AreEqual(1, actual.Value);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ValuePropertyNegative()
+        {
+            var actual = Option.None<int>();
+
+            Assert.AreEqual(1, actual.Value);
+        }
     }
 }

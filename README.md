@@ -66,6 +66,26 @@ public void OptionExampleUsageOfEnumerableQuery()
 }
 ```
 
+Supports JS-like evaluations if that's what you're into.
+
+```cs
+[TestMethod]
+public void OptionExampleUsageOfImplicitBool()
+{
+    Option<double> LookupCost(string itemId) => Some(10.00);
+    Option<double> LookupTax(string areaId) => Some(0.06);
+
+    var cost = LookupCost("123");
+    var tax  = LookupTax("CA");
+
+    var actual = cost && tax // <-- checking IsSome only.. not the content of the value.
+        ? cost.Value + (cost.Value * tax.Value)
+        : 0;
+
+    Assert.AreEqual(10.60, actual);
+}
+```
+
 Also includes a Result monad with the same features.  Examples to come...
 
 ## INITIALIZERS

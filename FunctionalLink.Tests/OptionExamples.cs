@@ -145,5 +145,37 @@ namespace FunctionalLink.Tests
 
             Assert.AreEqual(10.60, actual);
         }
+
+        [TestMethod]
+        public void OptionExampleUsageOfImplicitBool()
+        {
+            Option<double> LookupCost(string itemId) => Some(10.00);
+            Option<double> LookupTax(string areaId) => Some(0.06);
+
+            var cost = LookupCost("123");
+            var tax  = LookupTax("CA");
+
+            var actual = cost && tax
+                ? cost.Value + (cost.Value * tax.Value)
+                : 0;
+
+            Assert.AreEqual(10.60, actual);
+        }
+
+        [TestMethod]
+        public void OptionExampleUsageOfImplicitBoolNegative()
+        {
+            Option<double> LookupCost(string itemId) => Some(10.00);
+            Option<double> LookupTax(string areaId) => None;
+
+            var cost = LookupCost("123");
+            var tax  = LookupTax("CA");
+
+            var actual = cost && tax
+                ? cost.Value + (cost.Value * tax.Value)
+                : 0;
+
+            Assert.AreEqual(0, actual);
+        }
     }
 }

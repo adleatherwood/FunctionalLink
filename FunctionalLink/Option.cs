@@ -46,6 +46,11 @@ namespace FunctionalLink
         [DataMember] public readonly T SomeValue;
         [DataMember] public readonly NoneCase NoneValue;
 
+        public T Value =>
+            IsSome
+                ? SomeValue
+                : throw new InvalidOperationException("Cannot access value of 'None'.  Always check 'IsSome' first.");
+
         public static implicit operator Option<T>(SomeCase<T> some) =>
             some.Value != null
                 ? new Option<T>(some)
@@ -53,6 +58,9 @@ namespace FunctionalLink
 
         public static implicit operator Option<T>(NoneCase none) =>
             new Option<T>(none);
+
+        public static implicit operator bool(Option<T> option) =>
+            option.Match(some => true, none => false);
     }
 
     // ----------------------------------------------------
