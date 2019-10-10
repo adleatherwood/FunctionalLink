@@ -22,11 +22,19 @@ namespace FunctionalLink
         [DataMember] public readonly T SuccessValue;
         [DataMember] public readonly TFailure FailureValue;
 
+        public T Value =>
+            IsSuccess
+                ? SuccessValue
+                : throw new InvalidOperationException("Cannot access value of 'Failure'.  Always check 'IsSuccess' first.");
+
         public static implicit operator Result<T, TFailure>(SuccessCase<T> success) =>
             new Result<T, TFailure>(success);
 
         public static implicit operator Result<T, TFailure>(FailureCase<TFailure> failure) =>
             new Result<T, TFailure>(failure);
+
+        public static implicit operator bool(Result<T, TFailure> result) =>
+            result.Match(success => true, failure => false);
     }
 
     // ----------------------------------------------------

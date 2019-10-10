@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -208,6 +209,38 @@ namespace FunctionalLink.Tests
                 .Match(success => Async(success), failure => Async(""));
 
             Assert.AreEqual("1", actual);
+        }
+
+        public void ImplicitBooolPositive()
+        {
+            var actual = Result.Success(1);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void ImplicitBooolNegative()
+        {
+            var actual = Result.Failure<int>("");
+
+            Assert.IsFalse(actual);
+        }
+
+        [TestMethod]
+        public void ValuePropertyPositive()
+        {
+            var actual = Result.Success(1);
+
+            Assert.AreEqual(1, actual.Value);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ValuePropertyNegative()
+        {
+            var actual = Result.Failure<int>("");
+
+            Assert.AreEqual(1, actual.Value);
         }
     }
 }
