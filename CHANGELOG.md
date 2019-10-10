@@ -2,6 +2,13 @@
 
 <!--- next entry here -->
 
+## 2.1.0
+2019-10-10
+
+### Features
+
+- **monads:** Added implicit boolean conversion for JS like evaluation (5f5cbfd162deec91ab04c3c92d566d311e41911e)
+
 ## 2.0.0
 2019-10-02
 
