@@ -2,6 +2,18 @@
 
 <!--- next entry here -->
 
+## 2.2.0
+2020-01-15
+
+### Features
+
+- **tuples:** added xtend functions for continuous zipping (a841d2b70bee215d6c52db4487079c01c34135bd)
+
+### Fixes
+
+- **cicd:** changed pipeline to run on changelog commit (e8d6ebd90138f188e8e93260dcc9db7f9c4cd713)
+- **all:** added needed tests to all types (01385b2a950a92a3205df233c82ae8a5dc739008)
+
 ## 2.1.0
 2019-10-10
 
