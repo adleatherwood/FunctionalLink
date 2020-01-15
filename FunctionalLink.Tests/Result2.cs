@@ -242,5 +242,128 @@ namespace FunctionalLink.Tests
 
             Assert.AreEqual(1, actual.Value);
         }
+
+                [TestMethod]
+        public void ImplicitBoolIsTrueWithSuccess()
+        {
+            var actual = Result.Success<int,string>(1);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void ImplicitBoolIsFalseWithFailure()
+        {
+            var actual = Result.Failure<int,string>("");
+
+            Assert.IsFalse(actual);
+        }
+
+        //-----------------------
+
+        [TestMethod]
+        public void NoLambdaMapA()
+        {
+            int add(int a, int b) => a + b;
+
+            var actual = Result.Success<int,string>(1)
+                .Map(add, 1);
+
+            Assert.AreEqual(2, actual.Value);
+        }
+
+        [TestMethod]
+        public void NoLambdaMapAB()
+        {
+            int add(int a, int b, int c) => a + b + c;
+
+            var actual = Result.Success<int,string>(1)
+                .Map(add, 1, 1);
+
+            Assert.AreEqual(3, actual.Value);
+        }
+
+        [TestMethod]
+        public void NoLambdaMapABC()
+        {
+            int add(int a, int b, int c, int d) => a + b + c + d;
+
+            var actual = Result.Success<int,string>(1)
+                .Map(add, 1, 1, 1);
+
+            Assert.AreEqual(4, actual.Value);
+        }
+
+        [TestMethod]
+        public void NoLambdaVoidA()
+        {
+            var actual = 0;
+
+            void callback(int a, int b) => actual = a + b;
+
+            Result.Success<int,string>(1)
+                .Void(callback, 1);
+
+            Assert.AreEqual(2, actual);
+        }
+
+        [TestMethod]
+        public void NoLambdaVoidAB()
+        {
+            var actual = 0;
+
+            void callback(int a, int b, int c) => actual = a + b + c;
+
+            Result.Success<int,string>(1)
+                .Void(callback, 1, 1);
+
+            Assert.AreEqual(3, actual);
+        }
+
+        [TestMethod]
+        public void NoLambdaVoidABC()
+        {
+            var actual = 0;
+
+            void callback(int a, int b, int c, int d) => actual = a + b + c + d;
+
+            Result.Success<int,string>(1)
+                .Void(callback, 1, 1, 1);
+
+            Assert.AreEqual(4, actual);
+        }
+
+        [TestMethod]
+        public void NoLambdaBindABC()
+        {
+            Result<int,string> add(int a, int b, int c, int d) => Success<int,string>(a + b + c + d);
+
+            var actual = Result.Success<int,string>(1)
+                .Bind(add, 1, 1, 1);
+
+            Assert.AreEqual(4, actual.Value);
+        }
+
+        [TestMethod]
+        public void NoLambdaBindAB()
+        {
+            Result<int,string> add(int a, int b, int c) => Success<int,string>(a + b + c);
+
+            var actual = Result.Success<int,string>(1)
+                .Bind(add, 1, 1);
+
+            Assert.AreEqual(3, actual.Value);
+        }
+
+        [TestMethod]
+        public void NoLambdaBindA()
+        {
+            Result<int,string> add(int a, int b) => Success<int,string>(a + b);
+
+            var actual = Result.Success<int,string>(1)
+                .Bind(add, 1);
+
+            Assert.AreEqual(2, actual.Value);
+        }
     }
 }
