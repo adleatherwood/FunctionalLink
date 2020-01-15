@@ -46,6 +46,42 @@ namespace FunctionalLink.Tests
         }
 
         [TestMethod]
+        public void SelectMany1EvaluatesProperly()
+        {
+            var items = list(1, 2, 3);
+            var actual = items
+                .SelectMany((i, a) => singleton(i + a), 1)
+                .ToArray();
+            Assert.AreEqual(2, actual[0]);
+            Assert.AreEqual(3, actual[1]);
+            Assert.AreEqual(4, actual[2]);
+        }
+
+        [TestMethod]
+        public void SelectMany2EvaluatesProperly()
+        {
+            var items = list(1, 2, 3);
+            var actual = items
+                .SelectMany((i, a, b) => singleton(i + a + b), 1, 2)
+                .ToArray();
+            Assert.AreEqual(4, actual[0]);
+            Assert.AreEqual(5, actual[1]);
+            Assert.AreEqual(6, actual[2]);
+        }
+
+        [TestMethod]
+        public void SelectMany3EvaluatesProperly()
+        {
+            var items = list(1, 2, 3);
+            var actual = items
+                .SelectMany((i, a, b, c) => singleton(i + a + b + c), 1, 2, 3)
+                .ToArray();
+            Assert.AreEqual(7, actual[0]);
+            Assert.AreEqual(8, actual[1]);
+            Assert.AreEqual(9, actual[2]);
+        }
+
+        [TestMethod]
         public void IterateEvaluatesProperly()
         {
             var actual = new List<int>();
@@ -95,6 +131,50 @@ namespace FunctionalLink.Tests
             Assert.AreEqual(7, actual[0]);
             Assert.AreEqual(8, actual[1]);
             Assert.AreEqual(9, actual[2]);
+        }
+
+        [TestMethod]
+        public void SingletonReturnsASingleItemEnumerable()
+        {
+            var actual = "test".Singleton();
+
+            Assert.AreEqual(1, actual.Count);
+            Assert.AreEqual("test", actual.First());
+        }
+
+        [TestMethod]
+        public void EvaluateForcesTheExecutionOfALazyEnumerableAndReturnsTheResult()
+        {
+            var expected = 0;
+
+            IEnumerable<int> tick() { for(;;) { yield return ++expected; } }
+
+            var first = tick()
+                .Take(3)
+                .Evaluate();
+
+            Assert.AreEqual(3, first.Count());
+            Assert.AreEqual(3, expected);
+
+            var second = first
+                .Select(i => i + 1);
+
+            Assert.AreEqual(3, second.Count());
+            Assert.AreEqual(3, expected);
+        }
+
+        [TestMethod]
+        public void EvaluateAndIgnoreForcesTheExecutionOfALazyEnumerable()
+        {
+            var expected = 0;
+
+            IEnumerable<int> tick() { for(;;) { yield return ++expected; } }
+
+            tick()
+                .Take(3)
+                .EvaluateAndIgnore();
+
+            Assert.AreEqual(3, expected);
         }
 
         [TestMethod]
