@@ -60,7 +60,7 @@ master::release:
     if [ "$SEMVER" ]
     then
       ./.3rd/release changelog
-      ./.3rd/release commit-and-tag CHANGELOG.md
+      ./.3rd/release commit-and-tag --create-tag-pipeline CHANGELOG.md
     else
       echo "NO VERSION CHANGE -> SKIPPING TAGGING"
     fi
