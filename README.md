@@ -6,6 +6,16 @@ This library is intented to be a gateway for functional concepts to be applied i
 [![coverage report](https://gitlab.com/adleatherwood/FunctionalLink/badges/master/coverage.svg)](https://gitlab.com/adleatherwood/FunctionalLink/commits/master)
 [![NuGet](https://img.shields.io/nuget/v/FunctionalLink.svg?style=flat)](https://www.nuget.org/packages/FunctionalLink/)
 
+## Tutorial & Reasoning
+
+I have created a step-by-step walkthrough for transforming imperative code to functional code using the principles
+implemented in this library.  If you're wondering why you even need this library (or one like it),
+then read through the tutorial.
+
+[Functional Patterns for Cleaner Code @ Repl.It](https://repl.it/@TonyL1/FunctionalPatternsForCleanerCode)
+
+[Functional Patterns for Cleaner Code @ GitHub](https://github.com/adleatherwood/FunctionalPatternsForCleanerCode)
+
 ## Functions & Types
 
 #### Option\<T>
